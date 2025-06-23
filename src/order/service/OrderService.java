@@ -10,18 +10,24 @@ public class OrderService {
     private final List<Order> orders = new ArrayList<>();
 
     public void addOrder(Order order){
-        //TODO
+        if(order != null){
+            orders.add(order);
+        }
     }
 
     public List<Order> getAllOrders(){
-        return null;
+        return new ArrayList<>(orders);
     }
 
     public int getSize(){
+
         return orders.size();
     }
 
     public Order getOrderByName(String name){
-        return null;
+        return orders.stream()
+                .filter(order -> order.getDish().equalsIgnoreCase(name))
+                .findFirst()
+                .orElse(null);
     }
 }
